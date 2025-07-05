@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@paypal/react-paypal-js": "^8.8.3",
+    "@reduxjs/toolkit": "^2.8.2",
+    "axios": "^1.10.0",
+    "react-redux": "^9.2.0",
+    "sonner": "^2.0.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.4.1",
+    "vite": "^6.3.3"
+  }
+}
