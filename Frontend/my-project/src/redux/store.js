@@ -16,7 +16,7 @@ const store = configureStore({
         orders: orderReducer,
         admin: amdinReducer,
         adminProducts: amdinProductReducer,
-        adminOrders :amdinOrderReducer
+        adminOrders :amdinOrderReducer,
     },
 });
 

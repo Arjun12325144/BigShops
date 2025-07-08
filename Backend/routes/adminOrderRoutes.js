@@ -8,7 +8,7 @@ const router = express.Router();
 // access private/admin
 router.get("/",protect, admin,async (req,res)=>{
     try{
-         const orders = await Order.find({}).populate("user","name email");
+         const orders = await Order.find({}).populate("user", "name email");
         res.json(orders);
     }
     catch(err){
@@ -23,7 +23,7 @@ router.get("/",protect, admin,async (req,res)=>{
 // access private/admin
 router.put("/:id",protect, admin, async (req,res)=>{
     try{
-        const order = await Order.findById(req.params.id).populate("user","name");
+        const order = await Order.findById(req.params.id).populate("user", "name");
         if(order){
             order.status = req.body.status || req.status;
             order.isDelivered = 

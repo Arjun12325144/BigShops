@@ -14,6 +14,7 @@ const subscribeRoutes = require("./routes/subscriberRoutes")
 const adminRoutes  = require("./routes/adminRoutes") 
 const productAdminRoutes  = require("./routes/productAdminRoutes") 
 const adminOrderRoutes  = require("./routes/adminOrderRoutes") 
+const paymentRoutes = require("./routes/payment");
 app.use(express.json());
 app.use(cors());
 
@@ -37,7 +38,7 @@ app.use('/api/checkout', checkoutRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api', subscribeRoutes);
-
+app.use('/api/payment', paymentRoutes);
 //admin
 app.use('/api/admin/users', adminRoutes);
 app.use('/api/admin/products', productAdminRoutes);

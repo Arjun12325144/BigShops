@@ -3,11 +3,12 @@ import { MdDelete } from "react-icons/md";
 import {useSelector, useDispatch} from "react-redux";
 import {removeFromCart, updateCartItemQuantity } from "../../redux/slices/cartSlice" 
 const CartComponent = ({cart, userId, guestId}) => {
+  console.log(cart);
   const dispatch = useDispatch();
   //handle adding or sub to cart
   const handleAddToCart = (productId, delta, quantity, size, color)=>{
     const newQuantity = quantity + delta;
-    if(newQuantity >=1){
+    if(newQuantity >= 1){
       dispatch(
         updateCartItemQuantity({
           productId,
