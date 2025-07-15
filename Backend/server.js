@@ -31,7 +31,7 @@ app.use(cors({
     if (
       !origin || 
       allowedOrigins.includes(origin) || 
-      origin.endsWith('.vercel.app')
+      /\.vercel\.app$/.test(origin)
     ) {
       callback(null, true);
     } else {
