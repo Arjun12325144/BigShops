@@ -17,11 +17,26 @@ const adminOrderRoutes  = require("./routes/adminOrderRoutes")
 const paymentRoutes = require("./routes/payment");
 app.use(express.json());
 // app.use(cors());
-app.use(cors({
-  origin: 'https://big-shops-q9he.vercel.app', // your frontend Vercel domain
-  credentials: true  // only needed if you're using cookies / sessions
-}));
+// app.use(cors({
+//   origin: 'https://big-shops-q9he.vercel.app', // your frontend Vercel domain
+//   credentials: true  // only needed if you're using cookies / sessions
+// }));
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'https://big-shops-q9he.vercel.app',
+];
 
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed for this origin: ' + origin));
+    }
+  },
+  credentials: true
+}));
 
 
 dotenv.config();
