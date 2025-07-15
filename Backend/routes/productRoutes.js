@@ -64,71 +64,146 @@ router.post("/", protect,admin, async (req,res)=>{
 //@route PUT /api/products/:id
 //@desc update an existing product ID
 // @access Private/admin
-router.put("/:id",protect,admin,async (req,res)=>{
-    console.log("Updating Product:", req.params.id);
+
+// router.put("/:id",protect,admin,async (req,res)=>{
+//     console.log("Updating Product:", req.params.id);
+//   console.log("Received body:", JSON.stringify(req.body, null, 2));
+
+//     try{
+//         const {
+//             name,
+//             description,
+//             price,
+//             discountPrice,
+//             countInStock,
+//             category,
+//             brand,
+//             sizes,
+//             colors,
+//             collections,
+//             material,
+//             gender,
+//             images,
+//             isFeatured,
+//             isPublished,
+//             tags,
+//             dimensions,
+//             weight,
+//             sku,
+//         } = req.body;
+//         //find product by ID
+//         const product = await Product.findById(req.params.id);
+//         if(product){
+//             //update product fileds
+//             product.name = name || product.name;
+//             product.description = description || product.description;
+//             product.price = price || product.price;
+//             product.discountPrice = discountPrice || product.discountPrice;
+//             product.countInStock = countInStock || product.countInStock;
+//             product.category = category || product.category;
+//             product.brand = brand || product.brand;
+//             product.sizes = sizes || product.sizes;
+//             product.colors = colors || product.colors;
+//             product.collections = collections || product.collections;
+//             product.material = material || product.material;
+//             product.gender = gender || product.gender;
+//             product.images = images || product.images;
+//             product.isFeatured =
+//               isFeatured !== undefined ? isFeatured : product.isFeatured;
+//             product.isPublished =
+//               isPublished !== undefined ? isPublished : product.isPublished;
+//             product.tags = tags || product.tags;
+//             product.dimensions = dimensions || product.dimensions;
+//             product.weight = weight || product.weight;
+//             product.sku = sku || product.sku; 
+
+//             //save the updated product
+//             const updatedProduct = await product.save();
+//             res.json(updatedProduct);
+//         }
+//         else{
+//             res.status(404).json({message:"Product not found"});
+//         }
+//     }
+//     catch(err){
+//         console.error(err);
+//         res.status(500).send("server Error");
+//     }
+// })
+router.put("/:id", protect, admin, async (req, res) => {
+  console.log("Updating Product:", req.params.id);
   console.log("Received body:", JSON.stringify(req.body, null, 2));
 
-    try{
-        const {
-            name,
-            description,
-            price,
-            discountPrice,
-            countInStock,
-            category,
-            brand,
-            sizes,
-            colors,
-            collections,
-            material,
-            gender,
-            images,
-            isFeatured,
-            isPublished,
-            tags,
-            dimensions,
-            weight,
-            sku,
-        } = req.body;
-        //find product by ID
-        const product = await Product.findById(req.params.id);
-        if(product){
-            //update product fileds
-            product.name = name || product.name;
-            product.description = description || product.description;
-            product.price = price || product.price;
-            product.discountPrice = discountPrice || product.discountPrice;
-            product.countInStock = countInStock || product.countInStock;
-            product.category = category || product.category;
-            product.brand = brand || product.brand;
-            product.sizes = sizes || product.sizes;
-            product.colors = colors || product.colors;
-            product.collections = collections || product.collections;
-            product.material = material || product.material;
-            product.gender = gender || product.gender;
-            product.images = images || product.images;
-            product.isFeatured =
-              isFeatured !== undefined ? isFeatured : product.isFeatured;
-            product.isPublished =
-              isPublished !== undefined ? isPublished : product.isPublished;
-            product.tags = tags || product.tags;
-            product.dimensions = dimensions || product.dimensions;
-            product.weight = weight || product.weight;
-            product.sku = sku || product.sku; 
+  try {
+    const {
+      name,
+      description,
+      price,
+      discountPrice,
+      countInStock,
+      category,
+      brand,
+      sizes,
+      colors,
+      collections,
+      material,
+      gender,
+      images,
+      isFeatured,
+      isPublished,
+      tags,
+      dimensions,
+      weight,
+      sku,
+    } = req.body;
 
-            //save the updated product
-            const updatedProduct = await product.save();
-            res.json(updatedProduct);
-        }
-        else{
-            res.status(404).json({message:"Product not found"});
-        }
+    // Check if SKU already exists on a different product
+    if (sku) {
+      const existingProductWithSku = await Product.findOne({ sku: sku });
+      if (existingProductWithSku && existingProductWithSku._id.toString() !== req.params.id) {
+        return res.status(400).json({ message: "SKU already exists for another product." });
+      }
     }
-    catch(err){
-        console.error(err);
-        res.status(500).send("server Error");
+
+    // Find product by ID
+    const product = await Product.findById(req.params.id);
+
+    if (product) {
+      // Update fields
+      product.name = name || product.name;
+      product.description = description || product.description;
+      product.price = price || product.price;
+      product.discountPrice = discountPrice || product.discountPrice;
+      product.countInStock = countInStock || product.countInStock;
+      product.category = category || product.category;
+      product.brand = brand || product.brand;
+      product.sizes = sizes || product.sizes;
+      product.colors = colors || product.colors;
+      product.collections = collections || product.collections;
+      product.material = material || product.material;
+      product.gender = gender || product.gender;
+      product.images = images || product.images;
+      product.isFeatured =
+        isFeatured !== undefined ? isFeatured : product.isFeatured;
+      product.isPublished =
+        isPublished !== undefined ? isPublished : product.isPublished;
+      product.tags = tags || product.tags;
+      product.dimensions = dimensions || product.dimensions;
+      product.weight = weight || product.weight;
+      product.sku = sku || product.sku;
+
+      // Save updated product
+      const updatedProduct = await product.save();
+      res.json(updatedProduct);
+    } else {
+      res.status(404).json({ message: "Product not found" });
     }
-})
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("server Error");
+  }
+});
+
 
 
 //@routes DELETE /api/products/:id

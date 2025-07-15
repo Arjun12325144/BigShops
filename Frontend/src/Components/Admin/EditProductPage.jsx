@@ -35,6 +35,7 @@ const EditProductPage = () => {
     }
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
+        console.log("Selected file:", file);
         const formData = new FormData();
         formData.append("image", file);
         try {
@@ -113,7 +114,7 @@ const EditProductPage = () => {
                 {/* colors */}
                 <div className='mb-6'>
                     <label className='block font-semibold mb-2'>Colors (comma-separated) </label>
-                    <input type="text" name='color' className='w-full border border-gray-300 rounded-md p-2' value={productData.colors.join(", ")}
+                    <input type="text" name='colors' className='w-full border border-gray-300 rounded-md p-2' value={productData.colors.join(", ")}
                         onChange={(e) => setProductData({
                             ...productData,
                             colors: e.target.value.split(",").map((color) => color.trim()),
@@ -124,7 +125,7 @@ const EditProductPage = () => {
                 {/* image upload */}
                 <div className='mb-6'>
                     <label className='block font-medium mb-2'>Upload Image</label>
-                    <input type='file' onChange={handleImageUpload}></input>
+                    <input type='file'   onChange={handleImageUpload}></input>
                     {uploading && <p>Uploading Image...</p>}
                     <div className='flex gap-4 mt-4'>
                         {productData.images.map((image, index) => (

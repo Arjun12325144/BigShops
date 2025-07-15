@@ -2,12 +2,12 @@
     "version":2,
     "builds": [
         {
-            "src":"Frontend/my-project/package.json",
+            "src":"package.json",
             "use":"@vercel/static-build",
-            "config": {"distDir": "dist"}
+            "config": {"distDir": "build"}
         }
     ],
-    "rewrites":[
+    "routes":[
         {"source":"/(.*)", "destination":"/index.html"}
     ]
 }
