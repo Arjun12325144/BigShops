@@ -16,7 +16,13 @@ const productAdminRoutes  = require("./routes/productAdminRoutes")
 const adminOrderRoutes  = require("./routes/adminOrderRoutes") 
 const paymentRoutes = require("./routes/payment");
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: 'https://big-shops-q9he.vercel.app', // your frontend Vercel domain
+  credentials: true  // only needed if you're using cookies / sessions
+}));
+
+
 
 dotenv.config();
 console.log(process.env.PORT)
