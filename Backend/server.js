@@ -24,12 +24,15 @@ app.use(express.json());
 const allowedOrigins = [
   'http://localhost:5173',
   'http://127.0.0.1:5173',
-  'https://big-shops-q9he.vercel.app',
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (
+      !origin || 
+      allowedOrigins.includes(origin) || 
+      origin.endsWith('.vercel.app')
+    ) {
       callback(null, true);
     } else {
       callback(new Error('CORS not allowed for this origin: ' + origin));
@@ -37,6 +40,7 @@ app.use(cors({
   },
   credentials: true
 }));
+
 
 
 dotenv.config();
