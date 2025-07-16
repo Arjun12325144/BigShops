@@ -24,14 +24,15 @@ app.use(express.json());
 const allowedOrigins = [
   'http://localhost:5173',
   'http://127.0.0.1:5173',
+  'https://big-shops-7qtv.vercel.app',
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
     if (
-      !origin || 
-      allowedOrigins.includes(origin) || 
-      /\.vercel\.app$/.test(origin)
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      /^https:\/\/.*\.vercel\.app$/.test(origin)
     ) {
       callback(null, true);
     } else {
@@ -40,6 +41,7 @@ app.use(cors({
   },
   credentials: true
 }));
+
 
 
 
