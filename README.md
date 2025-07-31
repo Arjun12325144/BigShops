@@ -18,10 +18,21 @@ Add to cart funcationality, delete from cart update
 Fill details for create a payment
 <img width="1475" height="891" alt="Screenshot 2025-07-15 085310" src="https://github.com/user-attachments/assets/a133252b-5b1d-4b22-8c34-398d4e26b5aa" />
 
-
+Order confirmation page
 <img width="1859" height="919" alt="Screenshot 2025-07-15 085323" src="https://github.com/user-attachments/assets/03195833-32e2-4592-9cff-d7ce15de896f" />
+
+My orders page
 <img width="1857" height="614" alt="Screenshot 2025-07-15 085338" src="https://github.com/user-attachments/assets/4c026687-d90a-407e-8e0f-87855c77a2fd" />
+
+Admin dashboard
 <img width="1834" height="899" alt="Screenshot 2025-07-15 085541" src="https://github.com/user-attachments/assets/f1d117a3-4f04-4978-88ad-1a13fcff0495" />
+
+
+Admin Product Management, in which you can add new product images in cart 
 <img width="1765" height="889" alt="Screenshot 2025-07-15 085553" src="https://github.com/user-attachments/assets/6e2b9dc3-acb0-451e-b52b-a9fd506e7bd0" />
+
+Order Management in which admin can mark the item -> processed, cancelled, delivered
 <img width="1854" height="884" alt="Screenshot 2025-07-15 085610" src="https://github.com/user-attachments/assets/2b50ebd1-5c4c-4346-b927-e3cd16229f4c" />
+
+It is user management page
 <img width="1838" height="899" alt="Screenshot 2025-07-15 085628" src="https://github.com/user-attachments/assets/f813a706-5280-4ab3-9ef8-3c4214d13501" />
