@@ -19,9 +19,11 @@ import UserManagement from './Components/Admin/UserManagement'
 import ProductManagement from './Components/Admin/ProductManagement';
 import EditProductPage from './Components/Admin/EditProductPage';
 import OrderManagement from './Components/Admin/OrderManagement';
+import ChatbotManagement from './Components/Admin/ChatbotManagement';
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import ProtectedRoute from './Components/Common/ProtectedRoute';
+import Chatbot from './Components/Common/Chatbot';
 const App = () => {
   return (
     <Provider store={store}>
@@ -51,9 +53,11 @@ const App = () => {
                 <Route path='products' element={<ProductManagement/>}/>
                 <Route path='products/:id/edit' element={<EditProductPage/>}/>
                 <Route path='orders' element={<OrderManagement/>}/>
+                <Route path='chatbot' element={<ChatbotManagement/>}/>
             { /*admin layout */}
           </Route>
         </Routes>
+        <Chatbot />
      </BrowserRouter>
      </Provider>
   );

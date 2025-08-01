@@ -4,6 +4,7 @@ import { FaBoxOpen } from "react-icons/fa";
 import { FaStore } from "react-icons/fa";
 import { FaClipboardList } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
+import { FaRobot } from "react-icons/fa";
 import {useDispatch} from "react-redux";
 import {clearCart} from "../../redux/slices/cartSlice"
 import {logout} from "../../redux/slices/authSlice"
@@ -52,6 +53,16 @@ const AdminSidebar = () => {
                 >
                     <FaClipboardList />
                     <span>Orders</span>
+                </NavLink>
+                <NavLink
+                    to="/admin/chatbot"
+                    className= {({isActive}) => 
+                        isActive ? "bg-gray-700 text-white py-3 px-4 rounded flex items-center space-x-2":
+                        "text-gray-300 hover:bg-gray-700 hover:text-white py-3 px-4 flex items-center space-x-2"
+                    } 
+                >
+                    <FaRobot />
+                    <span>Chatbot</span>
                 </NavLink>
                 <NavLink
                     to="/"
