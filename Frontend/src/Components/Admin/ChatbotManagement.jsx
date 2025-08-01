@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiMessageSquare, FiUsers, FiBarChart3, FiRefreshCw, FiSearch, FiFilter } from 'react-icons/fi';
+import { FiMessageSquare, FiUsers, FiBarChart, FiRefreshCw, FiSearch, FiFilter } from 'react-icons/fi';
 import { BiBot, BiUser } from 'react-icons/bi';
 import axios from 'axios';
 import { toast } from 'sonner';
@@ -176,7 +176,7 @@ const ChatbotManagement = () => {
         <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
           <div className="flex items-center">
             <div className="p-2 bg-purple-100 rounded-lg">
-              <FiBarChart3 className="w-6 h-6 text-purple-600" />
+              <FiBarChart className="w-6 h-6 text-purple-600" />
             </div>
             <div className="ml-4">
               <p className="text-2xl font-bold text-gray-900">{stats.resolvedConversations}</p>
